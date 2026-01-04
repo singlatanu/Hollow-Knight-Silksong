@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>SuperhotSilkSongMod</AssemblyName>
+    <RootNamespace>SuperhotSilkSongMod</RootNamespace>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BepInEx -->
+    <Reference Include="BepInEx">
+      <HintPath>../core/BepInEx.dll</HintPath>
+    </Reference>
+
+    <Reference Include="0Harmony">
+      <HintPath>../core/0Harmony.dll</HintPath>
+    </Reference>
+
+    <!-- UnityEngine modules -->
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>../../Hollow Knight Silksong_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine">
+      <HintPath>../../Hollow Knight Silksong_Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>../../Hollow Knight Silksong_Data/Managed/UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>../../Hollow Knight Silksong_Data/Managed/UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+
+    <!-- Game assembly -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>../../Hollow Knight Silksong_Data/Managed/Assembly-CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Auto-copy built mod to BepInEx/plugins -->
+  <Target Name="PostBuild" AfterTargets="Build">
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="../..\BepInEx/plugins/SuperhotSilkSongMod/" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
