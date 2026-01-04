@@ -1,0 +1,124 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Target Unity-compatible .NET runtime -->
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <!-- Compile all items by default -->
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+    <!-- Prevent .NET from auto-generating binding redirects -->
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+
+    <!-- Output assembly name -->
+    <AssemblyName>NonStopHallsGauntlet</AssemblyName>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!-- BepInEx references -->
+    <Reference Include="BepInEx">
+      <HintPath>../..\BepInEx/core/BepInEx.dll</HintPath>
+    </Reference>
+
+    <Reference Include="0Harmony">
+      <HintPath>../..\BepInEx/core/0Harmony.dll</HintPath>
+    </Reference>
+
+    <!-- Game assemblies -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/Assembly-CSharp.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+
+    <Reference Include="PlayMaker">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/PlayMaker.dll</HintPath>
+    </Reference>
+
+    <!-- Unity Engine Modules -->
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.UI">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.UI.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Unity.Addressables">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/Unity.Addressables.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/Unity.ResourceManager.dll</HintPath>
+    </Reference>
+
+    <Reference Include="System.Windows.Forms">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/System.Windows.Forms.dll</HintPath>
+    </Reference>
+
+    <!-- Optional: TeamCherry.Localization if used -->
+    <Reference Include="TeamCherry.Localization">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/TeamCherry.Localization.dll</HintPath>
+    </Reference>
+
+    <!-- Optional: TeamCherry.Localization if used -->
+    <Reference Include="TeamCherry.TeamCherry.TK2D">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/TeamCherry.TK2D.dll</HintPath>
+    </Reference>
+
+    <!-- Optional: TeamCherry.Localization if used -->
+    <Reference Include="TeamCherry.NestedFadeGroup">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/TeamCherry.NestedFadeGroup.dll</HintPath>
+    </Reference>
+
+    <!-- Optional: System.Core for LINQ etc -->
+    <Reference Include="System.Core">
+      <HintPath>../..\Hollow Knight Silksong_Data/Managed/System.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Auto-copy built mod to BepInEx/plugins -->
+  <Target Name="PostBuild" AfterTargets="Build">
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="../..\BepInEx/plugins/NonStopHallsGauntlet/" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
